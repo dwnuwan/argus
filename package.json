@@ -9,6 +9,7 @@
     "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.16",
     "@mui/styled-engine-sc": "^5.10.16",
+    "@mui/x-data-grid": "^5.17.14",
     "@syncfusion/ej2": "20.3.0.56",
     "@syncfusion/ej2-react-calendars": "20.3.0.56",
     "@syncfusion/ej2-react-charts": "20.3.0.56",

@@ -4,7 +4,25 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import InputAdornment from '@mui/material/InputAdornment';
 
+import {
+  GridComponent,
+  ColumnsDirective,
+  ColumnDirective,
+  Resize,
+  Sort,
+  ContextMenu,
+  Filter,
+  Page,
+  ExcelExport,
+  PdfExport,
+  Edit,
+  Inject,
+  Search,
+  Toolbar,
+} from '@syncfusion/ej2-react-grids';
+
 import { Header } from '../components';
+import { documentsData, contextMenuItems, documentGrid } from '../data/data';
 
 const docType = [
   {
@@ -143,6 +161,36 @@ const Document = () => {
           />
         </div>
       </Box>
+      <div class="pt-14 ...">
+        <GridComponent
+          id="gridcomp"
+          dataSource={documentsData}
+          allowPaging
+          allowSorting
+          toolbar={['Search']}
+          width="auto"
+        >
+          <ColumnsDirective>
+            {documentGrid.map((item, index) => (
+              <ColumnDirective key={index} {...item} />
+            ))}
+          </ColumnsDirective>
+          <Inject
+            services={[
+              Resize,
+              Sort,
+              ContextMenu,
+              Filter,
+              Page,
+              ExcelExport,
+              Edit,
+              PdfExport,
+              Search,
+              Toolbar,
+            ]}
+          />
+        </GridComponent>
+      </div>
     </div>
   );
 };

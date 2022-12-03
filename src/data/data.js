@@ -339,3 +339,42 @@ export const links = [
     ],
   },
 ];
+
+export const documentsData = [
+  {
+    id: '4',
+    FromDate: '2022/10/04',
+    ExpireDate: '2023/10/04',
+    Status: 'Not Allocated',
+    StatusBg: '#FB9678',
+  },
+];
+
+export const documentGrid = [
+  {
+    field: 'id',
+    headerText: 'ID',
+    width: '100',
+    editType: 'dropdownedit',
+    textAlign: 'left',
+  },
+  {
+    field: 'FromDate',
+    headerText: 'From Date',
+    width: '100',
+    textAlign: 'Center',
+  },
+  {
+    field: 'ExpireDate',
+    headerText: 'Expire Date',
+    width: '120',
+    textAlign: 'Center',
+  },
+  {
+    headerText: 'Action',
+    template: gridOrderStatus,
+    field: 'Name',
+    textAlign: 'Center',
+    width: '100',
+  },
+];
