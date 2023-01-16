@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { Provider } from 'react-redux'
+import store from './redux/store'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
@@ -12,6 +14,7 @@ import {
   Chat,
   Notification,
 } from './components';
+
 
 import {
   Audit,
@@ -27,6 +30,7 @@ import {
   General,
 } from './pages';
 
+
 import { useStateContext } from './contexts/ContextProvider';
 
 import './App.css';
@@ -35,6 +39,7 @@ const App = () => {
   const { activeMenu } = useStateContext();
 
   return (
+    <Provider store={ store }>
     <div>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
@@ -94,6 +99,7 @@ const App = () => {
         </div>
       </BrowserRouter>
     </div>
+    </Provider>
   );
 };
 
