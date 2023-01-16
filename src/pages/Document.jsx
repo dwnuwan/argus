@@ -69,7 +69,7 @@ const Document = () => {
             id="outlined-disabled"
             label="Name"
             defaultValue="Name"
-            color="secondary"
+            color="primary"
           />
           <TextField
             id="outlined-disabled"
@@ -115,14 +115,14 @@ const Document = () => {
             id="outlined-disabled"
             label="Name"
             defaultValue="Name"
-            color="secondary"
+            color="primary"
           />
           <TextField
             required
             id="outlined-disabled"
             label="Responsible Person"
             defaultValue="Name"
-            color="secondary"
+            color="primary"
           />
           <TextField
             required
