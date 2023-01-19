@@ -1,5 +1,3 @@
-export {
-    fetchTasks,
-    createTask,
- 
-} from './Task/TaskAction'
+export { fetchTasks, createTask } from './Task/TaskAction';
+
+export { fetchUsers, deleteUser } from './User/UserAction';
