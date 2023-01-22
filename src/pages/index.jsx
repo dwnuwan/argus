@@ -8,4 +8,5 @@ export { default as RiskAssesment } from './RiskAssesment';
 export { default as Role } from './Role';
 export { default as Task } from './Task';
 export { default as Training } from './Training';
-export { default as User } from './User';
+export { default as User } from './UsersProfile/User';
+export { default as CreateUser } from './UsersProfile/CreateUser';

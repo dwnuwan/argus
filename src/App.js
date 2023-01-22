@@ -21,12 +21,13 @@ import {
   Policy,
   Training,
   CheckList,
+  Role,
   Task,
   RiskAssesment,
-  Role,
-  User,
   Permision,
   General,
+  CreateUser,
+  User,
 } from './pages';
 
 import { useStateContext } from './contexts/ContextProvider';
@@ -88,6 +89,7 @@ const App = () => {
 
                   {/* Tools */}
                   <Route path="/user" element={<User />} />
+                  <Route path="/createuser" element={<CreateUser />} />
                   <Route path="/role" element={<Role />} />
                   <Route path="/permision" element={<Permision />} />
                   <Route path="/general" element={<General />} />
