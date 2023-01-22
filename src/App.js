@@ -24,11 +24,15 @@ import {
   Role,
   Task,
   RiskAssesment,
+  User,
   Permision,
   General,
   CreateUser,
   User,
 } from './pages';
+
+//import {Test} from './pages/documents/Test';
+import { Create, Detail, Landing, Test } from './pages/documents';
 
 import { useStateContext } from './contexts/ContextProvider';
 
@@ -78,7 +82,7 @@ const App = () => {
                   {/* App */}
                   <Route path="/" element={<Audit />} />
                   <Route path="/audit" element={<Audit />} />
-                  <Route path="/document" element={<Document />} />
+
                   <Route path="/policy" element={<Policy />} />
                   <Route path="/training" element={<Training />} />
 
@@ -89,7 +93,7 @@ const App = () => {
 
                   {/* Tools */}
                   <Route path="/user" element={<User />} />
-                  <Route path="/createuser" element={<CreateUser />} />
+                  <Route path="/create user" element={<CreateUser />} />
                   <Route path="/role" element={<Role />} />
                   <Route path="/permision" element={<Permision />} />
                   <Route path="/general" element={<General />} />
