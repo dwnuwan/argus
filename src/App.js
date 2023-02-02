@@ -32,7 +32,6 @@ import {
 } from './pages';
 
 //import {Test} from './pages/documents/Test';
-import { Create, Detail, Landing, Test } from './pages/documents';
 
 import { useStateContext } from './contexts/ContextProvider';
 
