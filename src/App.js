@@ -28,10 +28,11 @@ import {
   Permision,
   General,
   CreateUser,
-  User,
+  Landing,
+  Create,
+  Detail,
+  LoginPage,
 } from './pages';
-
-//import {Test} from './pages/documents/Test';
 
 import { useStateContext } from './contexts/ContextProvider';
 
@@ -45,17 +46,10 @@ const App = () => {
       <div>
         <BrowserRouter>
           <div className="flex relative dark:bg-main-dark-bg">
-            <div className="fixed right-4 bottom-4" style={{ zIndex: '1000 ' }}>
-              <TooltipComponent content="Settings" position="Top">
-                <button
-                  type="button"
-                  className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
-                  style={{ background: 'white', borderRadius: '50%' }}
-                >
-                  <FiSettings />
-                </button>
-              </TooltipComponent>
-            </div>
+            <div
+              className="fixed right-4 bottom-4"
+              style={{ zIndex: '1000 ' }}
+            ></div>
             {activeMenu ? (
               <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
                 <Sidebar />
@@ -80,8 +74,10 @@ const App = () => {
                 <Routes>
                   {/* App */}
                   <Route path="/" element={<Audit />} />
-                  <Route path="/audit" element={<Audit />} />
-
+                  <Route path="login" element={<LoginPage />} />
+                  <Route path="/document" element={<Document />} />
+                  <Route path="/document/detail" element={<Detail />} />
+                  <Route path="/document/create" element={<Create />} />
                   <Route path="/policy" element={<Policy />} />
                   <Route path="/training" element={<Training />} />
 
@@ -92,7 +88,7 @@ const App = () => {
 
                   {/* Tools */}
                   <Route path="/user" element={<User />} />
-                  <Route path="/create user" element={<CreateUser />} />
+                  <Route path="/user/createuser" element={<CreateUser />} />
                   <Route path="/role" element={<Role />} />
                   <Route path="/permision" element={<Permision />} />
                   <Route path="/general" element={<General />} />

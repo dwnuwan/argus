@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { deleteUser, fetchUsers } from '../../redux';
 import Button from '@mui/material/Button';
 
@@ -14,6 +15,7 @@ import { Header } from '../../components';
 
 const User = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -82,12 +84,19 @@ const User = () => {
   ];
 
   const _userReducer = useSelector((state) => state.users);
-  console.log(_userReducer.users + 'test');
+
   return (
     <div className=" m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Tools" title="User" />
       <div className="ml-auto m-5">
-        <Button variant="contained">Create User</Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            navigate('/user/createuser');
+          }}
+        >
+          Create User
+        </Button>
       </div>
       <Table dataSource={_userReducer.users} columns={columns} />;
     </div>

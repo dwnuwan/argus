@@ -1,11 +1,34 @@
 import React from 'react';
 import { Form, Input, Select } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createUser } from '../../redux';
 import Button from '@mui/material/Button';
 
 import { Header } from '../../components';
 import { alignProperty } from '@mui/material/styles/cssUtils';
 
 const CreateUser = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onFinish = (values) => {
+    console.log('Success:', values);
+    handleCreateUser(values);
+  };
+
+  const handleCreateUser = (values) => {
+    values.isExpired = false;
+
+    values.tenantId = 2;
+
+    dispatch(createUser(values));
+    navigate('/documents');
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
   return (
     <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="App" title="Create User" />
