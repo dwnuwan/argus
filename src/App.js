@@ -28,7 +28,6 @@ import {
   Permision,
   General,
   CreateUser,
-  User,
 } from './pages';
 
 //import {Test} from './pages/documents/Test';
@@ -99,14 +98,9 @@ const App = () => {
                   <Route path="/role" element={<Role />} />
                   <Route path="/permision" element={<Permision />} />
                   <Route path="/general" element={<General />} />
-                </Routes>
-              </div>
-            </div>
-          </div>
-        </BrowserRouter>
-      </div>
-                {/* Tools */}
-                <Route path="/user" element={<User />} />
+                
+                 {/* Tools */}
+                 <Route path="/user" element={<User />} />
                 <Route path="/role" element={<Role />} />
                 <Route path="/permision" element={<Permision />} />
                 <Route path="/general" element={<General />} />
@@ -114,11 +108,11 @@ const App = () => {
                 <Route path="/documents/create" element={<Create />} />
                 <Route path="/documents/:id" element={<Detail />} />
               </Routes>
+              </div>
             </div>
           </div>
-        </div>
-      </BrowserRouter>
-   
+        </BrowserRouter>
+      </div>
     </Provider>
   );
 };
