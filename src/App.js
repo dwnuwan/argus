@@ -92,6 +92,15 @@ const App = () => {
                   <Route path="/role" element={<Role />} />
                   <Route path="/permision" element={<Permision />} />
                   <Route path="/general" element={<General />} />
+
+                  {/* Tools */}
+                  <Route path="/user" element={<User />} />
+                  <Route path="/role" element={<Role />} />
+                  <Route path="/permision" element={<Permision />} />
+                  <Route path="/general" element={<General />} />
+                  <Route path="/documents" element={<Landing />} />
+                  <Route path="/documents/create" element={<Create />} />
+                  <Route path="/documents/:id" element={<Detail />} />
                 </Routes>
               </div>
             </div>

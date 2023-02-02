@@ -1,5 +1,6 @@
 const initialState = {
-    documents : []
+    documents : [],
+    document : []
     
 }
 
@@ -16,7 +17,24 @@ const docuementReducer = (state = initialState , action) => {
             ...state,
             documents:[...state.documents , action.payload]
         }
-    }else{
+        
+    }
+    else if(action.type == "GET_DOCUMENT_BY_ID_FULFILLED"){
+       
+        return{
+            ...state,
+            document: action.payload
+           
+        }
+        
+    }
+    else if(action.type == "DELETE_DOCUMENT_FULFILLED"){
+        return{
+            ...state,
+            documents:[...state.documents , action.payload]
+        }
+    }
+    else{
         return state
     }
     

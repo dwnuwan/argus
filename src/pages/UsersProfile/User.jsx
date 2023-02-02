@@ -21,9 +21,9 @@ const User = () => {
     dispatch(fetchUsers());
   }, []);
 
-  const DeleteUser = (user) => {
+  const DeleteUser = (id) => {
     console.log('Excuted!');
-    dispatch(deleteUser(user));
+    dispatch(deleteUser(id));
   };
   const columns = [
     {
@@ -71,7 +71,7 @@ const User = () => {
               <Tooltip
                 content="Delete user"
                 color="error"
-                onClick={() => DeleteUser(record)}
+                onClick={() => DeleteUser(record.id)}
               >
                 <IconButton>
                   <DeleteIcon size={20} fill="#FF0080" />

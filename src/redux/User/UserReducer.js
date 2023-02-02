@@ -4,7 +4,7 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-  console.log(action.type);
+ 
   if (action.type == 'FETCH_USERS_FULFILLED') {
     console.log(action.payload + 'payload');
     return {

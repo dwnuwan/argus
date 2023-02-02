@@ -4,7 +4,7 @@ const initialState = {
 }
 
 const taskReducer = (state = initialState , action) => {
-    console.log(action.type);
+   
     if(action.type == "FETCH_TASKS_FULFILLED"){
        console.log(action.payload);
         return {
