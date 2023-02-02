@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteUser, fetchUsers } from '../redux';
+import { deleteUser, fetchUsers } from '../../redux';
 import Button from '@mui/material/Button';
 
 import { Table, Popconfirm } from 'antd';
-import { IconButton } from './General/IconButton';
-import { EyeIcon } from './General/EyeIcon';
-import { EditIcon } from './General/EditIcon';
-import { DeleteIcon } from './General/DeleteIcon';
+import { IconButton } from '../General/IconButton';
+import { EyeIcon } from '../General/EyeIcon';
+import { EditIcon } from '../General/EditIcon';
+import { DeleteIcon } from '../General/DeleteIcon';
 import { Tooltip, Col, Row } from '@nextui-org/react';
 
-import { Header } from '../components';
+import { Header } from '../../components';
 
 const User = () => {
   const dispatch = useDispatch();
