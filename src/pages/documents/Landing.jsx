@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import {  fetchDocuments } from '../../redux';
+import {  fetchDocuments,deleteDocuments } from '../../redux';
 import Button from '@mui/material/Button';
 
 import { Table, Popconfirm } from 'antd';
@@ -11,16 +11,38 @@ import { EditIcon } from '../General/EditIcon';
 import { DeleteIcon } from '../General/DeleteIcon';
 import { Tooltip, Col, Row } from '@nextui-org/react';
 import { Header } from '../../components';
+import moment from 'moment';
+import { click } from '@syncfusion/ej2-react-grids';
 
 const Landing = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
+
   
     useEffect(() => {
       dispatch(fetchDocuments());
     }, []);
+
+
+    const handleDelete = (doc)=>{
+      console.log("click");
+     // dispatch(deleteDocuments(doc));
+    }
   
- 
+
+   //format date using moment Js and render it in Anttable  
+   const getFormatDate = (date)=>{
+
+    let _date = moment(new Date(date));
+    date = _date.format("YYYY-MM-DD")
+    return date;
+   }
+
+
+   
+
+   // column configuration 
     const columns = [
     
       {
@@ -41,6 +63,7 @@ const Landing = () => {
         title:'Issued Date',
         dataIndex:'issueDate',
         key:'issueDate',
+        render: ((date) => getFormatDate(date)) 
       },
       {
         title:'Status',
@@ -52,31 +75,37 @@ const Landing = () => {
         title: 'Action',
         dataIndex: 'action',
         key: 'action',
-        width:100,
+        width:100,        onCell: (record, rowIndex) => {
+          return {
+              onClick: (ev) => {
+                handleDelete({"id" : record.id});
+              },
+          };
+      },
         render: (_, record) =>
           useSelector.length >= 1 ? (
             <Row justify="center" align="center">
               <Col css={{ d: 'flex' }}>
                 <Tooltip content="Details">
-                  <IconButton onClick={() => {navigate("/documents/detail");}}>
+                  <IconButton onClick={() => {navigate(`/documents/${record.id}`);}}>
                     <EyeIcon size={20} fill="#979797" />
                   </IconButton>
                 </Tooltip>
               </Col>
               <Col css={{ d: 'flex' }}>
-                <Tooltip content="Edit user">
-                  <IconButton onClick={() => console.log()}>
+                <Tooltip content="Edit Document">
+                  <IconButton onClick={() => console.log("click")}>
                     <EditIcon size={20} fill="#979797" />
                   </IconButton>
                 </Tooltip>
               </Col>
               <Col css={{ d: 'flex' }}>
                 <Tooltip
-                  content="Delete user"
+                  content="Delete Document"
                   color="error"
                  
                 >
-                  <IconButton>
+                  <IconButton >
                     <DeleteIcon size={20} fill="#FF0080" />
                   </IconButton>
                 </Tooltip>

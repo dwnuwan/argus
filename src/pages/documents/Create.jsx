@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {createDocument} from '../../redux';
+import {createDocument,fetchExternalProviders} from '../../redux';
 import { useNavigate } from "react-router-dom";
 import { Col, Row,Button, Checkbox, Form, Input,Typography,DatePicker,Select,InputNumber } from 'antd';
 
@@ -11,17 +11,28 @@ const Create = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
+
   const onFinish = (values) => {
     console.log('Success:', values);
     handleCreateDocument(values);
   };
 
+
+  useEffect(() => {
+      
+    dispatch(fetchExternalProviders());
+
+  }, []);
+
+  const _externalProviderReducer = useSelector((state) => state.externalProviders);
+
+
   const handleCreateDocument = (values) =>{
     values.isExpired = false;
-  
+    values.status = "Active";
     values.tenantId = 2;
 
-    
     dispatch(createDocument(values))
     navigate("/documents");
   }
@@ -45,6 +56,37 @@ const Create = () => {
     onFinishFailed={onFinishFailed}
     autoComplete="off"
   >
+   <Form.Item
+      label="Access Level"
+      name="accessLevel"
+      rules={[{ required: true, message: 'Access Level' }]}
+    >
+     <Select defaultValue="Public" style={{ width: '50%' }}>
+        <Option value="Public">Public</Option>
+        <Option value="Domain">Domain</Option>
+        <Option value="Confidential">Confidential</Option>
+        
+      </Select>
+    </Form.Item>
+
+    <Form.Item
+      label="Provider"
+      name="externalProviderId"
+      rules={[{ required: true, message: 'Provider' }]}
+    >
+     <Select defaultValue="Public" style={{ width: '50%' }}>
+     {_externalProviderReducer.externalProviders.map((option) => (
+          <Option key={option.id} value={option.id
+          }>
+            {option.companyName
+}
+          </Option>
+        ))}
+       
+        
+      </Select>
+    </Form.Item>
+
     <Form.Item
       label="Name"
       name="name"

@@ -40,12 +40,12 @@ export const createUser = (newUser) => {
   };
 };
 
-export const deleteUser = (user) => {
+export const deleteUser = (id) => {
   return (dispatch) => {
     dispatch({
       type: 'DELETE_USER',
       payload: new Promise((resolve, reject) => {
-        Axios.delete(`${API_PATH}User/Delete`, user, {
+        Axios.delete(`${API_PATH}User/Delete/${id}`, {
           //  headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
         })
           .then((res) => {

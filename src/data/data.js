@@ -286,7 +286,7 @@ export const links = [
         icon: <AiOutlineAudit />,
       },
       {
-        name: 'document',
+        name: 'documents',
         icon: <HiOutlineDocumentText />,
       },
       {

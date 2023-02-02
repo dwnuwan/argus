@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
@@ -41,10 +41,13 @@ import './App.css';
 const App = () => {
   const { activeMenu } = useStateContext();
 
+ 
+
   return (
     <Provider store={ store }>
-    <div>
+   
       <BrowserRouter>
+      
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: '1000 ' }}>
             <TooltipComponent content="Settings" position="Top">
@@ -74,7 +77,8 @@ const App = () => {
             }
           >
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
-              <Navbar />
+              
+            <Navbar />
             </div>
 
             <div>
@@ -98,13 +102,13 @@ const App = () => {
                 <Route path="/general" element={<General />} />
                 <Route path="/documents" element={<Landing />} />
                 <Route path="/documents/create" element={<Create />} />
-                <Route path="/documents/detail" element={<Detail />} />
+                <Route path="/documents/:id" element={<Detail />} />
               </Routes>
             </div>
           </div>
         </div>
       </BrowserRouter>
-    </div>
+   
     </Provider>
   );
 };
