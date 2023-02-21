@@ -14,7 +14,7 @@ const taskReducer = (state = initialState , action) => {
     }else if(action.type == "CREATE_TASK_FULFILLED"){
         return{
             ...state,
-            brands:[...state.tasks , action.payload]
+            tasks:[...state.taksByProject , action.payload]
         }
     }else{
         return state

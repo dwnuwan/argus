@@ -4,13 +4,13 @@ import API_PATH from '../api';
 
 
 
-// get list of documents 
-export const fetchDocuments = () => {
+// get list of products 
+export const fetchProjects = () => {
     return (dispatch) => {
       dispatch({
-        type: 'FETCH_DOCUMENTS',
+        type: 'FETCH_PROJECTS',
         payload: new Promise((resolve, reject) => {
-          Axios.get(`${API_PATH}Document/GetAll`, {
+          Axios.get(`${API_PATH}Project/GetAll`, {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
           })
             .then((res) => {
@@ -26,17 +26,17 @@ export const fetchDocuments = () => {
   };
 
 
-  export const deleteDocuments = (document) => {
+  export const deleteProjects = (document) => {
     return (dispatch) => {
       dispatch({
-        type: 'DELETE_DOCUMENTS',
+        type: 'DELETE_PROJECTS',
         payload: new Promise((resolve, reject) => {
-          Axios.delete(`${API_PATH}Document/Delete/?Id=${document.id}`, {
+          Axios.delete(`${API_PATH}Project/Delete/?Id=${document.id}`, {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
            
           })
             .then((res) => {
-              fetchDocuments();
+            
               resolve(res.data);
             })
             .catch((err) => {
@@ -47,13 +47,35 @@ export const fetchDocuments = () => {
     };
   };
 
-
-  export const getDocumentById = (id) => {
+ //get prpject by its id 
+  export const getProjectById = (id) => {
     return (dispatch) => {
       dispatch({
-        type: 'GET_DOCUMENT_BY_ID',
+        type: 'GET_PROJECT_BY_ID',
         payload: new Promise((resolve, reject) => {
-          Axios.get(`${API_PATH}Document/GetDocumentWithRenew?id=${id}`, {
+          Axios.get(`${API_PATH}Project/Get?id=${id}`, {
+
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
+          })
+            .then((res) => {
+            
+              resolve(res.data);
+            })
+            .catch((err) => {
+              resolve([]);
+            });
+        }),
+      });
+    };
+  };
+
+ // get all tasks by projet id 
+  export const getTaskByProjectId = (id) => {
+    return (dispatch) => {
+      dispatch({
+        type: 'GET_TASK_BY_PROJECT_ID',
+        payload: new Promise((resolve, reject) => {
+          Axios.get(`${API_PATH}TaskMaster/GetTaskByProjectId?projectId=${id}`, {
 
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
           })
@@ -71,13 +93,13 @@ export const fetchDocuments = () => {
 
 
   
-export const createDocument = (newDoucment) => {
+export const createProject = (newProject) => {
     return (dispatch) => {
       dispatch({
         type: 'CREATE_DOCUMENT',
         payload: new Promise((resolve, reject) => {
        
-          Axios.post(`${API_PATH}Document/Create/`, newDoucment, {
+          Axios.post(`${API_PATH}Project/Create/`,newProject, {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
           })
             .then((res) => {

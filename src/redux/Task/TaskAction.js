@@ -7,7 +7,7 @@ export const fetchTasks = () => {
       type: 'FETCH_TASKS',
       payload: new Promise((resolve, reject) => {
         Axios.get(`${API_PATH}TaskMaster/GetAll`, {
-          //headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
         })
           .then((res) => {
             resolve(res.data);
@@ -21,12 +21,13 @@ export const fetchTasks = () => {
 };
 
 export const createTask = (newTask) => {
+  console.log(newTask);
   return (dispatch) => {
     dispatch({
       type: 'CREATE_TASK',
       payload: new Promise((resolve, reject) => {
-        Axios.post(`${API_PATH}/Task/`, newTask, {
-          //  headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
+        Axios.post(`${API_PATH}TaskMaster/Create`, newTask, {
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
         })
           .then((res) => {
             resolve(res.data);

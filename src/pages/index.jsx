@@ -13,4 +13,5 @@ export { default as CreateUser } from './UsersProfile/CreateUser';
 export { default as Landing } from './documents/Landing';
 export { default as Create } from './documents/Create';
 export { default as Detail } from './documents/Detail';
+export { default as ProjectDetail } from './projects/detail';
 export { default as LoginPage } from './LoginPage';

@@ -1,12 +1,17 @@
 const initialState = {
   users: [],
   usersOfSelectedCompany: [],
+  
+  user:null,
+    tktOwner : null,
+    login : (localStorage.getItem("Token") != null ) ? true : false 
 };
 
 const userReducer = (state = initialState, action) => {
- 
+  console.log(action.payload + 'payload');
+  console.log(action.type);
   if (action.type == 'FETCH_USERS_FULFILLED') {
-    console.log(action.payload + 'payload');
+   
     return {
       ...state,
       users: action.payload,
@@ -16,7 +21,17 @@ const userReducer = (state = initialState, action) => {
       ...state,
       brands: [...state.users, action.payload],
     };
-  } else {
+  } else if (action.type == 'LOG_USERS_FULFILLED') {
+    console.log(action.payload.token);
+    localStorage.setItem('Token', action.payload.token)
+    return {
+      ...state,
+      user: action.payload.user,
+      login : true
+      
+    };
+  }
+  else {
     return state;
   }
 };

@@ -4,6 +4,7 @@ import store from './redux/store';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import PrivateRoutes from './contexts/privateRoutes';
 
 import {
   Navbar,
@@ -31,15 +32,25 @@ import {
   Landing,
   Create,
   Detail,
+  ProjectDetail,
   LoginPage,
 } from './pages';
 
 import { useStateContext } from './contexts/ContextProvider';
 
 import './App.css';
+import Index from './pages/projects';
 
 const App = () => {
   const { activeMenu } = useStateContext();
+
+  const isLogin = () => {
+    var Token = (localStorage.getItem("Token") != null ) ? true : false
+    console.log(Token);
+    if (Token )  return true
+    else return false
+  }
+
 
   return (
     <Provider store={store}>
@@ -75,9 +86,7 @@ const App = () => {
                   {/* App */}
                   <Route path="/" element={<Audit />} />
                   <Route path="login" element={<LoginPage />} />
-                  <Route path="/document" element={<Document />} />
-                  <Route path="/document/detail" element={<Detail />} />
-                  <Route path="/document/create" element={<Create />} />
+                 
                   <Route path="/policy" element={<Policy />} />
                   <Route path="/training" element={<Training />} />
 
@@ -98,10 +107,35 @@ const App = () => {
                   <Route path="/role" element={<Role />} />
                   <Route path="/permision" element={<Permision />} />
                   <Route path="/general" element={<General />} />
-                  <Route path="/documents" element={<Landing />} />
-                  <Route path="/documents/create" element={<Create />} />
-                  <Route path="/documents/:id" element={<Detail />} />
+                  <Route path="/projects" element={<Index />} />
+
+                  <Route path="/documents" element={
+                    <PrivateRoutes>
+                     <Landing />
+                     </PrivateRoutes>
+                     } />
+                  <Route path="/documents/create" element={
+                     <PrivateRoutes>
+                       <Create />
+                     </PrivateRoutes>
+                 
+                  } />
+                  <Route path="/documents/:id" element={
+                    <PrivateRoutes>
+                      <Detail />
+                    </PrivateRoutes>
+                   
+                    
+                    } />
+                     <Route path="/projects/:id" element={
+                    <PrivateRoutes>
+                      <ProjectDetail />
+                    </PrivateRoutes>
+                   
+                    
+                    } />
                 </Routes>
+                
               </div>
             </div>
           </div>

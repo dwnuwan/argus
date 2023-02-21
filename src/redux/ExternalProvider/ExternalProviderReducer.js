@@ -6,7 +6,7 @@ const initialState = {
 }
 
 const externalProviderReducer = (state = initialState , action) => {
-    console.log(action.type);
+   
     if(action.type == "FETCH_EXTERNAL_PROVIDERS_FULFILLED"){
        console.log(action.payload);
         return {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import {  fetchDocuments,deleteDocuments } from '../../redux';
+import {  fetchProjects,deleteProjects} from '../../redux';
 import Button from '@mui/material/Button';
 
 import { Table, Popconfirm } from 'antd';
@@ -12,16 +12,16 @@ import { DeleteIcon } from '../General/DeleteIcon';
 import { Tooltip, Col, Row } from '@nextui-org/react';
 import { Header } from '../../components';
 import moment from 'moment';
-import { click } from '@syncfusion/ej2-react-grids';
 
-const Landing = () => {
+
+const Index = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
 
   
     useEffect(() => {
-      dispatch(fetchDocuments());
+      dispatch(fetchProjects());
     }, []);
 
 
@@ -47,29 +47,35 @@ const Landing = () => {
     
       {
         title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'projectName',
+        key: 'projectName',
       },
       {
-        title: 'Type',
-        dataIndex: 'type',
-        key: 'type',
+        title: 'Category',
+        dataIndex: 'category',
+        key: 'category',
       },{
         title:'Category',
         dataIndex:'category',
         key:'category',
       },
       {
-        title:'Issued Date',
-        dataIndex:'issueDate',
-        key:'issueDate',
+        title:'Started Date',
+        dataIndex:'startedDate',
+        key:'startedDate',
         render: ((date) => getFormatDate(date)) 
+      },
+      {
+        title:'Due Date',
+        dataIndex:'dueDate',
+        key:'dueDate',
       },
       {
         title:'Status',
         dataIndex:'status',
         key:'status',
       },
+      
       
       {
         title: 'Action',
@@ -87,7 +93,7 @@ const Landing = () => {
             <Row justify="center" align="center">
               <Col css={{ d: 'flex' }}>
                 <Tooltip content="Details">
-                  <IconButton onClick={() => {navigate(`/documents/${record.id}`);}}>
+                  <IconButton onClick={() => {navigate(`/projects/${record.id}`);}}>
                     <EyeIcon size={20} fill="#979797" />
                   </IconButton>
                 </Tooltip>
@@ -115,7 +121,7 @@ const Landing = () => {
       },
     ];
   
-    const _documentReducer = useSelector((state) => state.documents);
+    const _projectReducer = useSelector((state) => state.projects);
    
     return (
       <div className=" m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -123,9 +129,9 @@ const Landing = () => {
         <div className="ml-auto m-5">
           <Button variant="contained" onClick={()=>{navigate("/documents/create")}} >Create Document</Button>
         </div>
-        <Table dataSource={_documentReducer.documents} columns={columns} />;
+        <Table dataSource={_projectReducer.projects} columns={columns} />;
       </div>
     );
   };
 
-  export default Landing;
+  export default Index;

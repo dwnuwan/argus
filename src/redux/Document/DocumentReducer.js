@@ -5,7 +5,7 @@ const initialState = {
 }
 
 const docuementReducer = (state = initialState , action) => {
-    console.log(action.type);
+   
     if(action.type == "FETCH_DOCUMENTS_FULFILLED"){
        console.log(action.payload);
         return {

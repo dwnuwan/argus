@@ -8,7 +8,7 @@ export const fetchUsers = () => {
       type: 'FETCH_USERS',
       payload: new Promise((resolve, reject) => {
         Axios.get(`${API_PATH}User/GetAll`, {
-          //headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
         })
           .then((res) => {
             resolve(res.data);
@@ -21,13 +21,34 @@ export const fetchUsers = () => {
   };
 };
 
+export const logUser = (user) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'LOG_USERS',
+      payload: new Promise((resolve, reject) => {
+        Axios.post(`${API_PATH}User/Login`, user,{
+          //headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
+        })
+          .then((res) => {
+            resolve(res.data);
+          })
+          .catch((err) => {
+            if(err.response.status == 404){
+              alert("Invalid username / Email or Password ? ")
+          }
+          });
+      }),
+    });
+  };
+};
+
 export const createUser = (newUser) => {
   return (dispatch) => {
     dispatch({
       type: 'CREATE_USER',
       payload: new Promise((resolve, reject) => {
         Axios.post(`${API_PATH}/User/`, newUser, {
-          //  headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
         })
           .then((res) => {
             resolve(res.data);
@@ -46,7 +67,7 @@ export const deleteUser = (id) => {
       type: 'DELETE_USER',
       payload: new Promise((resolve, reject) => {
         Axios.delete(`${API_PATH}User/Delete/${id}`, {
-          //  headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
         })
           .then((res) => {
             resolve(res.data);

@@ -1,10 +1,33 @@
-import React from 'react';
+import {React,useState,useEffect }from 'react';
 import '../App.css';
 import Landing from '../assets/loginn.jpg';
 import Eye from '../assets/eye.svg';
 import Google from '../assets/google.svg';
-
+import {Form,Input,Button} from 'antd'
+import { padding } from '@mui/system';
+import {logUser} from '../redux';
+import { useNavigate } from "react-router";
+import { useSelector, useDispatch } from 'react-redux';
 const LoginPage = () => {
+const dispatch = useDispatch();
+const navigate =  useNavigate()
+
+const _userReducer = useSelector((state) => state.users);
+
+ const onFinish = (values)=>{
+  dispatch(logUser(values));
+  console.log('Success:', values);
+ }
+
+ const onFinishFailed = ()=>{
+  console.log("");
+ }
+
+ useEffect(()=>{
+  if(_userReducer.login == true)  navigate('/') 
+  return () => { }
+},[ _userReducer.login ]) 
+  
   return (
     <section className="bg-gray-50 min-h-screen flex items-center justify-center">
       <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
@@ -13,31 +36,40 @@ const LoginPage = () => {
           <p className="text-xs mt-4 text-[#002D74]">
             If you already a member, easily log in
           </p>
-          <form action="" className="flex flex-col gap-4">
-            <input
-              className="p-2 mt-8 rounded-xl border"
-              type="text"
-              name="Username"
-              placeholder="User Name"
-            />
-            <div className="relative">
-              <input
-                className="p-2 rounded-xl border w-full"
-                type="password"
-                name="password"
-                placeholder="Password"
-              />
-              <img
-                className="absolute top-1/2 right-3 -translate-y-1/2"
-                src={Eye}
-                alt="eye"
-              />
-            </div>
+   
+          <Form
+    name="create"
+   
+    labelCol={{ span: 8 }}
+    wrapperCol={{ span: 16 }}
+    style={{ maxWidth: 800 }}
+    initialValues={{ remember: true }}
+    onFinish={onFinish}
+    onFinishFailed={onFinishFailed}
+    autoComplete="off"
+  >
+     <Form.Item
+    
+      name="username"
+      rules={[{ required: true, message: 'Please input UserName' }]}
+    >
+      <Input style={{width:'250px'}} placeholder='User Name' className="p-2 mt-8 rounded-xl border" />
+    </Form.Item>
 
-            <button className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">
-              Login
-            </button>
-          </form>
+    <Form.Item
+    
+    name="password"
+    rules={[{ required: true, message: 'Please input Password' }]}
+  >
+    <Input placeholder='Password' style={{width:'250px'}} type='password' className="p-2 mt-8 rounded-xl border" />
+  </Form.Item>
+  <Form.Item  >
+      <Button style={{width:'250px', padding:'5px',height:'40px' }}   className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300" type="primary"  htmlType="submit">
+        Login
+      </Button>
+    </Form.Item>
+  </Form>
+
 
           <div className="mt-10 grid grid-cols-3 items-center text-gray-500">
             <hr className="border-gray-400"></hr>
