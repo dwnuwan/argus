@@ -40,6 +40,7 @@ import { useStateContext } from './contexts/ContextProvider';
 
 import './App.css';
 import Index from './pages/projects';
+import CreateProject from './pages/projects/createProject';
 
 const App = () => {
   const { activeMenu } = useStateContext();
@@ -89,6 +90,7 @@ const App = () => {
                  
                   <Route path="/policy" element={<Policy />} />
                   <Route path="/training" element={<Training />} />
+                 
 
                   {/* Tools */}
                   <Route path="/check list" element={<CheckList />} />
@@ -108,6 +110,7 @@ const App = () => {
                   <Route path="/permision" element={<Permision />} />
                   <Route path="/general" element={<General />} />
                   <Route path="/projects" element={<Index />} />
+                  <Route path="/projects/create/new" element={<CreateProject />} />
 
                   <Route path="/documents" element={
                     <PrivateRoutes>

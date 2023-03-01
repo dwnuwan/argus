@@ -49,6 +49,7 @@ export const fetchProjects = () => {
 
  //get prpject by its id 
   export const getProjectById = (id) => {
+    console.log("Dispath")
     return (dispatch) => {
       dispatch({
         type: 'GET_PROJECT_BY_ID',
@@ -96,16 +97,24 @@ export const fetchProjects = () => {
 export const createProject = (newProject) => {
     return (dispatch) => {
       dispatch({
-        type: 'CREATE_DOCUMENT',
+        type: 'CREATE_PROJECT',
         payload: new Promise((resolve, reject) => {
        
           Axios.post(`${API_PATH}Project/Create/`,newProject, {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem("Token") }
           })
             .then((res) => {
+              dispatch({
+                type: 'CREATE_PROJECT_DATA_SUCCESS',
+                payload: res.data,
+              });
               resolve(res.data);
             })
             .catch((err) => {
+              dispatch({
+                type: 'CREATE_PROJECT_DATA_ERROR',
+                payload: err.message,
+              });
               resolve([]);
             });
         }),

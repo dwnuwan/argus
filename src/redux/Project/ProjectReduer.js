@@ -2,13 +2,14 @@ const initialState = {
     projects : [],
     projectsByOwner : [],
     project :[],
-    taksByProject:[]
+    taksByProject:[],
+    CREATE_TASK_DATA_SUCCESS:"",
     
 }
 
 const projectReducer = (state = initialState , action) => {
    
-    console.log(action.type);
+   
     if(action.type == "FETCH_PROJECTS_FULFILLED"){
       
         return {
@@ -16,13 +17,7 @@ const projectReducer = (state = initialState , action) => {
             projects : action.payload
         }
     }
-    if(action.type == "GET_TASK_BY_PROJECT_ID_FULFILLED"){
-       
-            return {
-                ...state,
-                taksByProject : action.payload
-            }
-    }else if(action.type == "CREATE_DOCUMENT_FULFILLED"){
+    else if(action.type == "CREATE_PROJECT_FULFILLED"){
         return{
             ...state,
             projects:[...state.projects , action.payload]
@@ -30,10 +25,24 @@ const projectReducer = (state = initialState , action) => {
         
     }
     else if(action.type == "GET_PROJECT_BY_ID_FULFILLED"){
-       
         return{
             ...state,
             project: action.payload
+        }
+        
+    }
+    else if(action.type == "CREATE_PROJECT_DATA_SUCCESS"){
+        return{
+            ...state,
+            CREATE_TASK_DATA_SUCCESS:"Create Project Sucessfuly !"
+        }
+        
+    }
+    else if(action.type == "CREATE_PROJECT_DATA_ERROR"){
+       
+        return{
+            ...state,
+            CREATE_TASK_DATA_SUCCESS: action.payload
            
         }
         

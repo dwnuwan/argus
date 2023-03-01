@@ -294,7 +294,7 @@ export const links = [
         icon: <MdOutlinePolicy />,
       },
       {
-        name: 'training',
+        name: 'projects',
         icon: <MdOutlineModelTraining />,
       },
     ],

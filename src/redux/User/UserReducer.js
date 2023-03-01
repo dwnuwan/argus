@@ -8,8 +8,7 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-  console.log(action.payload + 'payload');
-  console.log(action.type);
+
   if (action.type == 'FETCH_USERS_FULFILLED') {
    
     return {
@@ -22,7 +21,7 @@ const userReducer = (state = initialState, action) => {
       brands: [...state.users, action.payload],
     };
   } else if (action.type == 'LOG_USERS_FULFILLED') {
-    console.log(action.payload.token);
+    
     localStorage.setItem('Token', action.payload.token)
     return {
       ...state,

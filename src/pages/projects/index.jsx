@@ -125,9 +125,9 @@ const Index = () => {
    
     return (
       <div className=" m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header category="Apps" title="Document" />
+        <Header category="Apps" title="Projects" />
         <div className="ml-auto m-5">
-          <Button variant="contained" onClick={()=>{navigate("/documents/create")}} >Create Document</Button>
+          <Button variant="contained" onClick={()=>{navigate("/projects/create/new")}} >Create Project</Button>
         </div>
         <Table dataSource={_projectReducer.projects} columns={columns} />;
       </div>
